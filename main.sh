@@ -88,6 +88,13 @@ function environment_variable_exists_example {
     fi
 }
 
+function prompt_for_input_example {
+    # zsh specific
+    echo -e "Enter some text: "
+    read REPLY
+    echo -e "You entered ${REPLY}\n"
+}
+
 function main {
     this_script_paths
     outter_fn "from the outside"
@@ -98,6 +105,8 @@ function main {
 
     environment_variable_exists_example "SHELL"
     environment_variable_exists_example "SHELLzzz"
+
+    #prompt_for_input_example
 }
 
 main "$@"
