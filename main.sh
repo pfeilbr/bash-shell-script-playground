@@ -48,7 +48,7 @@ function to_lowercase {
 function to_lowercase_example {
     input="HELLO WorlD"
     ret=$(to_lowercase "${input}")
-    echo -e "to_lowercase_example: to_lowercase(\"${input}\") -> ${ret}"
+    echo -e "to_lowercase_example: to_lowercase(\"${input}\") -> ${ret}\n"
 
 }
 
@@ -73,6 +73,21 @@ function date_time_examples {
     echo -e "date_year_month_day: $(date_year_month_day)\n"
 }
 
+function environment_variable_exists_example {
+
+    variable_name=$1
+
+    # https://stackoverflow.com/questions/16553089/dynamic-variable-names-in-bash
+    variable_value="${!variable_name}" # ! for dynamic variable name
+
+
+    if [ ! -z "${variable_value}" ]; then
+        echo -e "variable_name: ${variable_name}\nvariable_value: ${variable_value}\n"
+    else
+        echo -e "variable_name \"${variable_name}\" not defined\n"
+    fi
+}
+
 function main {
     this_script_paths
     outter_fn "from the outside"
@@ -80,6 +95,9 @@ function main {
     file_size "${this_script_name}"
     date_time_examples
     to_lowercase_example
+
+    environment_variable_exists_example "SHELL"
+    environment_variable_exists_example "SHELLzzz"
 }
 
 main "$@"
