@@ -67,10 +67,23 @@ function date_year_month_day {
     date "+%Y%m%d"
 }
 
+
+function timestamp_append {
+    prefix=$1
+    date +"$prefix-%Y%m%d-%H%M%S"
+}
+
+function timestamp_prepend {
+    suffix=$1
+    date +"%Y%m%d-%H%M%S-$suffix"
+}
+
 function date_time_examples {
     echo -e "timestamp_string: $(timestamp_string)"
     echo -e "timestamp_unix: $(timestamp_unix)"
-    echo -e "date_year_month_day: $(date_year_month_day)\n"
+    echo -e "date_year_month_day: $(date_year_month_day)"
+    echo -e "timestamp_append: $(timestamp_append "my-file")"
+    echo -e "timestamp_append: $(timestamp_prepend "my-file")\n"
 }
 
 function environment_variable_exists_example {
